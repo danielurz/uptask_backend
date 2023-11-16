@@ -9,12 +9,27 @@ import tareaRoutes from "./routes/tarea.routes.js";
 const app = express()
 app.use(express.json())
 dotenv.config()
-app.use(cors())
 connectionDB()
+
+const whiteList = ["uptask-frontend.pages.dev"]
+
+const corsOptions = {
+    origin: (origin, callback) => {
+        const esValido = whiteList.every(dominio => origin.endsWith(dominio))
+        if (esValido) {
+            callback(null, true)
+        } else {
+            callback(new Error("No permitido por CORS"))
+        }
+    }
+}
+
+app.use(cors(corsOptions))
 
 app.use("/api/user", usuarioRouter)
 app.use("/api/project", proyectoRoutes)
 app.use("/api/task", tareaRoutes)
+
 
 const PORT = process.env.PORT || 4000
 

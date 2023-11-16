@@ -18,6 +18,10 @@ app.use("/api/task", tareaRoutes)
 
 const PORT = process.env.PORT || 4000
 
+app.get("/", (req, res) => {
+    res.send("App working")
+})
+
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`)
 })

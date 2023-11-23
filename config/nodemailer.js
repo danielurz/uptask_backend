@@ -1,11 +1,11 @@
 import nodemailer from "nodemailer"
 
 const transport = nodemailer.createTransport({
-  host: "sandbox.smtp.mailtrap.io",
-  port: 2525,
+  host: "smtp.gmail.com",
+  port: 587,
   auth: {
-    user: "f633e59dba7a94",
-    pass: "7ff8ab35e86c20"
+    user: "enviodeprospect0@gmail.com",
+    pass: "baonufyqvheqxytr"
   }
 });
 
@@ -33,4 +33,27 @@ export const emailOlvidePassword = async ({token,nombre,email}) => {
             <a href="http://127.0.0.1:5173/nuevo-password/${token}">Reestablecer password</a>
         `
     })
+}
+
+
+export const envioMailPortfolio = async (req,res) => {
+    try {
+        const {name,email,subject,tel} = req.body
+        await transport.sendMail({
+            from: "danielurzola.com",
+            to: "daniel.urzola96@gmail.com",
+            subject: "new message from your webpage",
+            html: `
+            <p>Name: ${name}</p>
+            <p>Email: ${email}</p>
+            <p>Tel: ${tel}</p>
+            <p>Subject: ${subject}</p>
+            `
+        })
+
+        res.json({success: "Message sent successfully"})
+        
+    } catch (error) {
+        res.status(500).json({ServerError: error.message})
+    }
 }

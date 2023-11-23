@@ -6,7 +6,6 @@ export const connectionDB = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
-
         console.log(`MongoDB conectado en el puerto ${db.connection.port}`)
     } catch (error) {
         console.log(error.message)

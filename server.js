@@ -14,8 +14,9 @@ connectionDB()
 const whiteList = ["uptask-frontend.pages.dev","danielurzola.com"]
 
 const corsOptions = {
-    origin: (origin, callback) => {
+    origin: (origin, callback) => {        
         const esValido = whiteList.every(dominio => origin.endsWith(dominio))
+        console.log(whiteList, origin, esValido)
         if (esValido) {
             callback(null, true)
         } else {

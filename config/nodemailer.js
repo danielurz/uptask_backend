@@ -1,22 +1,22 @@
 import nodemailer from "nodemailer"
 
-// const transport = nodemailer.createTransport({
-//   host: "smtp.gmail.com",
-//   port: 587,
-//   auth: {
-//     user: "enviodeprospect0@gmail.com",
-//     pass: "baonufyqvheqxytr"
-//   }
-// });
-
 const transport = nodemailer.createTransport({
-    host: "sandbox.smtp.mailtrap.io",
-    port: 2525,
-    auth: {
-        user: "19062441f2772e",
-        pass: "77382a51dc2386"
-    }
+  host: "smtp.gmail.com",
+  port: 587,
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASSWORD
+  }
 });
+
+// const transport = nodemailer.createTransport({
+//     host: "sandbox.smtp.mailtrap.io",
+//     port: 2525,
+//     auth: {
+//         user: "19062441f2772e",
+//         pass: "77382a51dc2386"
+//     }
+// });
 
 
 export const emailRegistro = async ({token,nombre,email}) => {

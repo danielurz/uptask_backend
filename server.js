@@ -24,8 +24,8 @@ const corsOptions = {
     }
 }
 
-// app.use(cors(corsOptions))
-app.use(cors())
+app.use(cors(corsOptions))
+// app.use(cors())
 
 app.use("/api/user", usuarioRouter)
 app.use("/api/project", proyectoRoutes)

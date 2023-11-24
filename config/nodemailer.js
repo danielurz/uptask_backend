@@ -54,6 +54,6 @@ export const envioMailPortfolio = async (req,res) => {
         res.json({success: "Message sent successfully"})
         
     } catch (error) {
-        res.status(500).json({ServerError: error.message})
+        res.status(500).json({error: error.message})
     }
 }

@@ -1,22 +1,22 @@
 import nodemailer from "nodemailer"
 
-const transport = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  auth: {
-    user: "enviodeprospect0@gmail.com",
-    pass: "baonufyqvheqxytr"
-  }
-});
-
 // const transport = nodemailer.createTransport({
-//     host: "sandbox.smtp.mailtrap.io",
-//     port: 2525,
-//     auth: {
-//         user: "19062441f2772e",
-//         pass: "77382a51dc2386"
-//     }
+//   host: "smtp.gmail.com",
+//   port: 587,
+//   auth: {
+//     user: "enviodeprospect0@gmail.com",
+//     pass: "baonufyqvheqxytr"
+//   }
 // });
+
+const transport = nodemailer.createTransport({
+    host: "sandbox.smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+        user: "19062441f2772e",
+        pass: "77382a51dc2386"
+    }
+});
 
 
 export const emailRegistro = async ({token,nombre,email}) => {
@@ -47,7 +47,10 @@ export const emailOlvidePassword = async ({token,nombre,email}) => {
 
 export const envioMailPortfolio = async (req,res) => {
     try {
-        const {name,email,subject,tel} = req.body
+        const {name,email,subject} = req.body
+
+        const tel = req.body.tel || "No ingresó teléfono"
+
         await transport.sendMail({
             from: "danielurzola.com",
             to: "daniel.urzola96@gmail.com",

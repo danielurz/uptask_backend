@@ -21,7 +21,6 @@ router.post("/envio-mail-portfolio", envioMailPortfolio)
 
 
 
-
 // Area Privada
 router.get("/autentication", authUser, autenticarUsuario)
 

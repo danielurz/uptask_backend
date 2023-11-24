@@ -15,7 +15,6 @@ const whiteList = ["uptask-frontend.pages.dev","danielurzola.com"]
 
 const corsOptions = {
     origin: (origin, callback) => {        
-        console.log(origin)
         const esValido = whiteList.some(dominio => origin.endsWith(dominio))
         if (esValido) {
             callback(null, true)
@@ -25,8 +24,8 @@ const corsOptions = {
     }
 }
 
-// app.use(cors(corsOptions))
-app.use(cors())
+app.use(cors(corsOptions))
+// app.use(cors())
 
 app.use("/api/user", usuarioRouter)
 app.use("/api/project", proyectoRoutes)

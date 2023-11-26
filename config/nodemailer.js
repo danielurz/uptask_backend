@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer"
+import fetch from "node-fetch"
 
 const transport = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -57,9 +58,9 @@ export const envioMailPortfolio = async (req,res) => {
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
             },
-        });
+        }).then(res => res.json())
 
-        if (!captachaResult.data.success) return res.status(400).json({error: 'reCAPTCHA check failed.' });
+        if (!captachaResult.success) return res.status(400).json({error: 'reCAPTCHA check failed.' });
 
         const tel = req.body.tel || "No ingresó teléfono"
 

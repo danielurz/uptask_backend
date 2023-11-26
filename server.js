@@ -11,7 +11,7 @@ app.use(express.json())
 dotenv.config()
 connectionDB()
 
-const whiteList = ["uptask-frontend.pages.dev","danielurzola.com","portfolio-66x.pages.dev"]
+const whiteList = ["uptask-frontend.pages.dev","danielurzola.com","portfolio-66x.pages.dev","http://127.0.0.1:5500"]
 
 const corsOptions = {
     origin: (origin, callback) => {        

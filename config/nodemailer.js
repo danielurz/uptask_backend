@@ -48,6 +48,18 @@ export const emailOlvidePassword = async ({token,nombre,email}) => {
 export const envioMailPortfolio = async (req,res) => {
     try {
         const {name,email,subject} = req.body
+        const recaptchaResponse = req.body['g-recaptcha-response'];
+
+        const recaptchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.SECRET_KEY}&response=${recaptchaResponse}`
+
+        const captachaResult = await fetch(recaptchaUrl,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+            },
+        });
+
+        if (!captachaResult.data.success) return res.status(400).json({error: 'reCAPTCHA check failed.' });
 
         const tel = req.body.tel || "No ingresó teléfono"
 
